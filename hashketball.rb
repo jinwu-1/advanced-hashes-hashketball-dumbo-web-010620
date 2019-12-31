@@ -218,6 +218,6 @@ def big_shoe_rebounds
     end
   end
   shoes.each {|player, size| big_shoe = player if size == shoes.values.max}
-  big_shoe  
+  big_shoe
 end
 big_shoe_rebounds
