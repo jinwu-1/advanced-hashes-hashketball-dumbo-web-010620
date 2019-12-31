@@ -204,20 +204,16 @@ def player_stats(players_name)
 end
 
 def big_shoe_rebounds
-  big_shoe = nil
-  shoes = {}
-  game_hash.each do |location, data|
-    data.each do |key, value|
-      if key == :players
-        value.each do |name, stats|
-          stats.each do |stat, value|
-            shoes[name] = game_hash[location][:players][name][:shoe] if stat == :shoe
-          end
-        end
+  biggest = 0
+  rebounds = 0
+  game_hash.each do |home_away, keys|
+    keys[:players].each do |player|
+      size = player[:shoe]
+      if size > biggest
+        biggest = size
+        rebounds = player[:rebounds]
       end
     end
   end
-  shoes.each {|player, size| big_shoe = player if size == shoes.values.max}
-  big_shoe
+  rebounds
 end
-big_shoe_rebounds
